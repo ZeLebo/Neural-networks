@@ -1,6 +1,7 @@
 # take the list.txt file and convert it to requirements.txt
 import re
 
+
 def main():
     content = ""
     output = []
@@ -17,6 +18,6 @@ def main():
     with open("requirements.txt", "w") as f:
         f.write("\n".join(output))
 
+
 if __name__ == '__main__':
     main()
-
