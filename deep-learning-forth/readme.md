@@ -14,19 +14,20 @@
 
 ## results
 + Адекватный вариант тут - [link](using_PPO/using_PPO_packman.ipynb)
++ Еще один вариант (но тут gymnasium) - [work for me](from_collab/main.ipynb)
 
 
 + Пакеты постоянно не ставятся
-    ![alt-text](photos/third.jpg)
+    ![alt-text](misc/photos/third.jpg)
 
 
 
 + Но даже если кажется, что всё работает, ничего не работает
-  ![alt-text](photos/first.jpg)
-  ![alt-text](photos/second.jpg)
+  ![alt-text](misc/photos/first.jpg)
+  ![alt-text](misc/photos/second.jpg)
 
 + И даже если прошло сверху, то снизу нас ждет
-  ![alt-text](photos/forth.jpg)
+  ![alt-text](misc/photos/forth.jpg)
 
 
 
