@@ -1,3 +1,4 @@
+## Task itself
 * Задание - обучите модель играть в одну из указанных игр Atari:
     * Enduro https://www.gymlibrary.dev/environments/atari/enduro/ - нужно избегать столкновения с машинами на трассе
     * Skiings https://www.gymlibrary.dev/environments/atari/skiing/ - нужно попадать в заданные интервалы при движении с горки
@@ -9,10 +10,32 @@
 * Если необходимо, напишите буфер реплеев с приоритизацией
 * Изучите функцию награды и подумайте, как эффективно подобрать параметры
 * Подумайте, как лучше организовать исследование - оставить шум из примера и использовать какую-то другую стратегию
-* Особо ~~отбитым~~ интересующимся предлагаю найти и использовать другую модель - например, PPO, A2C (добавить несколько параллельных агентов и шаринг весов к этой), или найти имплементацию SoTA на играх Атари (в этом случае необходимо объяснить как модель работает по статье и разобраться в имплементации) 
+* Особо ~~отбитым~~ интересующимся предлагаю найти и использовать другую модель - например, PPO, A2C (добавить несколько параллельных агентов и шаринг весов к этой), или найти имплементацию SoTA на играх Атари (в этом случае необходимо объяснить как модель работает по статье и разобраться в имплементации)
+
+## results
++ Адекватный вариант тут - [link](using_PPO/using_PPO_packman.ipynb)
+
+
++ Пакеты постоянно не ставятся
+    ![alt-text](photos/third.jpg)
+
+
+
++ Но даже если кажется, что всё работает, ничего не работает
+  ![alt-text](photos/first.jpg)
+  ![alt-text](photos/second.jpg)
+
++ И даже если прошло сверху, то снизу нас ждет
+  ![alt-text](photos/forth.jpg)
 
 
 
 ## Ideas
- Code is not working due to None in available_actions, but it supposed to be
+ + Code is not working due to None in available_actions, but it supposed to be
  Dependency hell again
+ + Try to use PPO
+ + Cannot use it due to dependency hell
+ + Try to install numpy < 1.17
+ + Cannot install it due to dependency hell
+ + while installing gym need to install ale-py < 0.8.0
+ + Cannot install it due to dependency hell
