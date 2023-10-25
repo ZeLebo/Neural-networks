@@ -1,7 +1,5 @@
 const canvas = document.getElementById("tetris");
 const ctx = canvas.getContext('2d');
-const canvas_score = document.getElementById('score');
-const ctx_score = canvas_score.getContext('2d');
 const scale = 40;
 
 ctx.scale(scale, scale);
@@ -11,7 +9,7 @@ const tHeight = canvas.height / scale;
 
 const score = 0;
 const div = document.getElementById('score');
-div.innerText = score + "";
+div.innerText = " score: " + score;
 
 const pieces = [
     [
@@ -77,6 +75,10 @@ rand = Math.floor(Math.random() * pieces.length);
 player.matrix = pieces[rand];
 player.color = colors[rand+1];
 player.score = 0;
+
+function updateScore(newScore) {
+    div.innerText = " score: " + newScore;
+}
 
 function drawMatrix(matrix, x, y) {
     for (let i = 0; i < matrix.length; i++) {
@@ -149,7 +151,8 @@ function clearBlocks() {
             arena.splice(1, 0, r);
         }
     }
-    player.score += cnt ** 2; 
+    player.score += cnt * (player.score + 1); 
+    updateScore(player.score);
 }
 
 function drawArena() {
@@ -181,7 +184,9 @@ function initArena() {
     arena.push(r);
 }
 
+
 function gameOver() {
+    player.score = 0;
     for (let j = 1; j < arena[1].length-1; j++)
         if (arena[1][j])
             return initArena();
@@ -192,9 +197,13 @@ function gameOver() {
 let interval = 500;
 let lastTime = 0;
 let count = 0;
+let isPaused = false;
 
 function update(time = 0) {
-    console.log(player.score);
+    if (isPaused) {
+        requestAnimationFrame(update);
+        return;
+    }
     const dt = time - lastTime;
     lastTime = time;
     count += dt;
@@ -222,10 +231,6 @@ function update(time = 0) {
     ctx.fillStyle = "#000";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx_score.fillStyle = "#fff"
-    ctx.fillText(player.score, canvas_score.width / 2, canvas_score.height);
-    
-
     drawArena();
     ctx.fillStyle = player.color;
     drawMatrix(player.matrix, player.pos.x, player.pos.y);
@@ -233,9 +238,19 @@ function update(time = 0) {
     requestAnimationFrame(update);
 }
 
-document.addEventListener("keydown", event => {
 
-    if (event.keyCode === 37 && interval-1) {
+document.addEventListener("keydown", event => {
+    if (isPaused) {
+        if (event.keyCode === 13) {
+            isPaused = false;
+            update();
+        }
+        return;
+    }
+    if (event.keyCode === 13) {
+        isPaused = true;
+        return;
+    } else if (event.keyCode === 37 && interval-1) {
         player.pos.x--;
         if (collides(player, arena))
             player.pos.x++;
@@ -253,7 +268,6 @@ document.addEventListener("keydown", event => {
     } else if (event.keyCode === 32) {
         interval = 1;
     }
-
 });
 
 initArena();
