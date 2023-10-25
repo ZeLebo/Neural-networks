@@ -9,6 +9,10 @@ ctx.scale(scale, scale);
 const tWidth = canvas.width / scale;
 const tHeight = canvas.height / scale;
 
+const score = 0;
+const div = document.getElementById('score');
+div.innerText = score + "";
+
 const pieces = [
     [
         [1, 1],
@@ -46,6 +50,7 @@ const pieces = [
         [0, 7, 0]
     ]
 ];
+
 const colors = [
     null,
     '#FF0D72',
